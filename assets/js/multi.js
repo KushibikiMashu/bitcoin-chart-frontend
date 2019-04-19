@@ -1,9 +1,9 @@
 // チャートのデータが古い、または読み込めない場合は、
 // ajaxのjson取得アドレスをサーバーに応じて変更する
 
-var seriesOptions = [],
-  seriesCounter = 0,
-  names = ['Zaif', 'bitflyer', 'coincheck'];
+let seriesOptions = [],
+  seriesCounter = 0;
+const names = ['Zaif', 'bitflyer', 'coincheck'];
 
 /**
  * Create the chart when all data is loaded
@@ -66,7 +66,6 @@ function createChart() {
   });
 }
 
-// カンマ区切り
 Highcharts.setOptions({
   global: {
     useUTC: false
@@ -77,6 +76,20 @@ Highcharts.setOptions({
     numericSymbols: null
   }
 });
+
+names.map(async name => {
+  const res = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
+  console.log(res);
+
+  // As we're loading the data asynchronously, we don't know what order it will arrive. So
+  // we keep a counter and create the chart when all the data is loaded.
+  seriesCounter += 1;
+
+  if (seriesCounter === names.length) {
+    createChart();
+  }
+})
+
 
 $.each(names, function (i, name) {
   $.getJSON('http://bitcoin-chart.info/js/json/' + name.toLowerCase() + '.json', function (data) {
