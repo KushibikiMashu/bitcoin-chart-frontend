@@ -13,8 +13,31 @@ while (($csv = fgetcsv($fp)) !== FALSE) {
 }
 fclose($fp);
 
-var_dump($data);
-
 $zaif      = [];
 $bitflyer  = [];
 $coincheck = [];
+
+$i = $j = $k = 1;
+
+foreach ($data as $key => $row) {
+    switch ($key) {
+        case($key % 3 === 0):
+            $zaif[] = $row;
+            $zaif[$i - 1]['id'] = $i;
+            $i++;
+            break;
+        case($key % 3 === 1):
+            $bitflyer[] = $row;
+            $bitflyer[$j - 1]['id'] = $j;
+            $j++;
+            break;
+        case($key % 3 === 2):
+            $coincheck[] = $row;
+            $coincheck[$k - 1]['id'] = $k;
+            $k++;
+            break;
+    }
+}
+
+var_dump($zaif);
+
