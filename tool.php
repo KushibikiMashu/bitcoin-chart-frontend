@@ -36,27 +36,27 @@ class BitcoinChartCsvProcessor implements CsvProcessor
         $i    = $j = $k = 0;
 
         foreach ($data as $key => $row) {
-            switch ($key) {
-                case($key % 3 === 0):
-                    $zaif[] = $row;
-                    unset($zaif[$i]['name']);
-                    $zaif[$i]['id'] = $i+1;
-                    $i++;
-                    break;
-                case($key % 3 === 1):
-                    $bitflyer[] = $row;
-                    unset($bitflyer[$i]['name']);
-                    $bitflyer[$j]['id'] = $j+1;
-                    $j++;
-                    break;
-                case($key % 3 === 2):
-                    $coincheck[] = $row;
-                    unset($coincheck[$i]['name']);
-                    $coincheck[$k]['id'] = $k+1;
-                    $k++;
-                    break;
-                default:
-                    break;
+//            var_dump($key);
+//            var_dump($key % 3 === 0);
+//            var_dump($key % 3 === 1);
+//            var_dump($key % 3 === 2);
+//            var_dump($row);
+
+            if ($key % 3 === 0) {
+                $zaif[] = $row;
+                unset($zaif[$i]['name']);
+                $zaif[$i]['id'] = $i + 1;
+                $i++;
+            } else if ($key % 3 === 1) {
+                $bitflyer[] = $row;
+                unset($bitflyer[$j]['name']);
+                $bitflyer[$j]['id'] = $j + 1;
+                $j++;
+            } else if ($key % 3 === 2) {
+                $coincheck[] = $row;
+                unset($coincheck[$k]['name']);
+                $coincheck[$k]['id'] = $k + 1;
+                $k++;
             }
         }
 
