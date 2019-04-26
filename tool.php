@@ -2,7 +2,7 @@
 
 $data = [];
 
-$fp = fopen('bitcoin_exchange.csv', 'r');
+$fp = fopen('data/bitcoin_exchange.csv', 'r');
 while (($csv = fgetcsv($fp)) !== false) {
     $data[] = [
         'id'       => $csv[0],
@@ -53,7 +53,7 @@ $files = [
 ];
 
 foreach ($files as $filename => $exchange) {
-    $f = fopen("{$filename}.csv", 'w');
+    $f = fopen("data/{$filename}.csv", 'w');
     foreach ($exchange as $line) {
         fputcsv($f, $line);
     }
