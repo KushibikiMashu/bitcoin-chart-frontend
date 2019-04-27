@@ -77,38 +77,38 @@ Highcharts.setOptions({
   }
 });
 
-names.map(async (i, name) => {
-  const res = await axios.get('https://script.google.com/macros/s/AKfycbzymYPlML4oiQopSAHEUl7B9Do-W-ECADJ6zKuCYR7g9wkHAJg/exec', { headers: {'Access-Control-Allow-Origin': '*'}});
-  const data = res.data;
-  seriesOptions[i] = {
-    name: name,
-    data: data[name]
-  };
-
-  console.log(res);
-
-  // As we're loading the data asynchronously, we don't know what order it will arrive. So
-  // we keep a counter and create the chart when all the data is loaded.
-  seriesCounter += 1;
-
-  if (seriesCounter === names.length) {
-    createChart();
-  }
-});
-
-// $.each(names, function (i, name) {
-//   $.getJSON('http://bitcoin-chart.info/js/json/' + name.toLowerCase() + '.json', function (data) {
-//     seriesOptions[i] = {
-//       name: name,
-//       data: data
-//     };
+// names.map(async (i, name) => {
+//   const res = await axios.get('https://script.google.com/macros/s/AKfycbzymYPlML4oiQopSAHEUl7B9Do-W-ECADJ6zKuCYR7g9wkHAJg/exec', { headers: {'Access-Control-Allow-Origin': '*'}});
+//   const data = res.data;
+//   seriesOptions[i] = {
+//     name: name,
+//     data: data[name]
+//   };
 //
-//     // As we're loading the data asynchronously, we don't know what order it will arrive. So
-//     // we keep a counter and create the chart when all the data is loaded.
-//     seriesCounter += 1;
+//   console.log(res);
 //
-//     if (seriesCounter === names.length) {
-//       createChart();
-//     }
-//   });
+//   // As we're loading the data asynchronously, we don't know what order it will arrive. So
+//   // we keep a counter and create the chart when all the data is loaded.
+//   seriesCounter += 1;
+//
+//   if (seriesCounter === names.length) {
+//     createChart();
+//   }
 // });
+
+$.each(names, function (i, name) {
+  $.getJSON('https://script.google.com/macros/s/AKfycbzymYPlML4oiQopSAHEUl7B9Do-W-ECADJ6zKuCYR7g9wkHAJg/exec', function (data) {
+    seriesOptions[i] = {
+      name: name,
+      data: data[name],
+    };
+
+    // As we're loading the data asynchronously, we don't know what order it will arrive. So
+    // we keep a counter and create the chart when all the data is loaded.
+    seriesCounter += 1;
+
+    if (seriesCounter === names.length) {
+      createChart();
+    }
+  });
+});
