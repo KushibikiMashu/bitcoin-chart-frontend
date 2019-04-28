@@ -1,25 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <!--<meta charset="utf-8" />-->
+    <!--<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1" />-->
+    <!--<meta name="theme-color" content="#000000" />-->
+    <!--&lt;!&ndash;-->
+      <!--manifest.json provides metadata used when your web app is installed on a-->
+      <!--user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/-->
+    <!--&ndash;&gt;-->
+    <!--<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />-->
+    <!--&lt;!&ndash;-->
+      <!--Notice the use of %PUBLIC_URL% in the tags above.-->
+      <!--It will be replaced with the URL of the `public` folder during the build.-->
+      <!--Only files inside the `public` folder can be referenced from the HTML.-->
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+      <!--Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will-->
+      <!--work correctly both with client-side routing and a non-root public URL.-->
+      <!--Learn how to configure a non-root public URL by running `npm run build`.-->
+    <!--&ndash;&gt;-->
+    <!--<title>React App</title>-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="ビットコイン, bitcoin, Bitcoin, exchange, 取引所, 価格 price, チャート, chart"/>
+    <meta name="description" content="ビットコインの価格を取引所ごとに比較しています。"/>
+    <meta property="og:title" content="ビットコインチャート.info"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://bitcoin-chart.info/"/>
+    <meta property="og:image" content="http://bitcoin-chart.info/assets/image/thumbnail.jpg"/>
+    <meta property="og:site_name" content="ビットコインチャート.info"/>
+    <meta property="og:description" content="ビットコインの価格を取引所ごとに比較しています。"/>
+    <title>ビットコインチャート.info</title>
+
+    <!-- ※ Twitter共通設定 -->
+    <meta name="twitter:card" content="photo"/>
+    <meta name="twitter:site" content="@Panda_Program"/>
+    <meta name="twitter:player" content="@Panda_Program"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          type="text/css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117498267-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-117498267-2');
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
