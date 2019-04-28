@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 import axios from 'axios'
+import {func} from "prop-types";
 
 const SPREADSHEET = 'https://script.google.com/macros/s/AKfycbzymYPlML4oiQopSAHEUl7B9Do-W-ECADJ6zKuCYR7g9wkHAJg/exec'
 const EXCHANGES = ['zaif', 'bitflyer', 'coincheck'];
@@ -86,14 +87,26 @@ function useFetchOptions(): Highcharts.Options {
                 throw Error("Something is wrong with the connection to Spreadsheet.")
             }
         }
+
         fetchSeries()
     }, [])
 
     return options
 }
 
+function useTimer() {
+    const [count, setCount] = useState(0)
+
+    useEffect(() => {
+        setTimeout(() => setCount(count + 1), 1000)
+    })
+
+    return count
+}
+
 const StockChart: React.FC = () => {
     const options = useFetchOptions()
+    const count = useTimer()
 
     if (!options.series) return (
         <div
@@ -105,9 +118,12 @@ const StockChart: React.FC = () => {
                 fontSize: 48,
             }}
         >
+            You are waiting for {count} seconds
+            <br/>
             Now Loading...
         </div>
     )
+
     return (
         <HighchartsReact
             highcharts={Highcharts}
