@@ -1,5 +1,6 @@
 import React from 'react';
-import './theme.css';
+import './App.css';
+import StockChart from "./StockChart";
 
 const App: React.FC = () => {
   return (
@@ -21,7 +22,9 @@ const App: React.FC = () => {
                       <li style={{paddingBottom:10}}>このチャートでは、ビットコインの15分ごとの金額を各取引所ごとに比較しています。</li>
                       <li style={{paddingBottom:10}}>価格は15分毎の購入価格です。チャートは15分ごとに更新されます。</li>
                   </ul>
-                  <div id="container" style={{height: 400, minWidth: 310}}></div>
+                  <div id="container" style={{height: 400, minWidth: 310}}>
+                      <StockChart/>
+                  </div>
               </div>
           </div>
           <div className="py-5" style={{paddingBottom: 1}}>
