@@ -4,7 +4,7 @@ import StockChart from "./StockChart";
 
 const App: React.FC = () => {
   return (
-      <body>
+      <div>
           <nav className="navbar navbar-expand-md navbar-dark bg-primary text-left">
               <div className="container">
                   <a className="navbar-brand" href="">
@@ -82,7 +82,7 @@ const App: React.FC = () => {
                   </a>
               </div>
           </div>
-      </body>
+      </div>
           );
 }
 
