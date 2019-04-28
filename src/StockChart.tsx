@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 import axios from 'axios'
-import {func} from "prop-types";
 
 const SPREADSHEET = 'https://script.google.com/macros/s/AKfycbzymYPlML4oiQopSAHEUl7B9Do-W-ECADJ6zKuCYR7g9wkHAJg/exec'
 const EXCHANGES = ['zaif', 'bitflyer', 'coincheck'];

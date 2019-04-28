@@ -14,15 +14,15 @@ const Header: React.FC = () => (
         <meta property="og:site_name" content="ビットコインチャート.info"/>
         <meta property="og:description" content="ビットコインの価格を取引所ごとに比較しています。"/>
         <title>ビットコインチャート.info</title>
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
 
-        <!-- ※ Twitter共通設定 -->
+        {/*Twitter共通設定*/}
         <meta name="twitter:card" content="photo"/>
         <meta name="twitter:site" content="@Panda_Program"/>
         <meta name="twitter:player" content="@Panda_Program"/>
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
               type="text/css"/>
-
     </Helmet>
 )
 
