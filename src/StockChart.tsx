@@ -1,135 +1,137 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react'
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 import axios from 'axios'
 
 const SPREADSHEET = 'https://script.google.com/macros/s/AKfycbzymYPlML4oiQopSAHEUl7B9Do-W-ECADJ6zKuCYR7g9wkHAJg/exec'
-const EXCHANGES = ['zaif', 'bitflyer', 'coincheck'];
+const EXCHANGES = ['zaif', 'bitflyer', 'coincheck']
 
 const initialOptions: Highcharts.Options = {
-    chart: {
-        height: 525,
+  chart: {
+    height: 525,
+  },
+  title: {
+    text: 'Bitcoin price of main exchanges',
+  },
+  rangeSelector: {
+    allButtonsEnabled: false,
+    selected: 0,
+    buttons: [
+      {
+        type: 'minute', // 分単位 (0)
+        count: 1440, // 単位は分
+        text: '1d', // 一日分
+      },
+      {
+        type: 'minute', // 日単位 (1)
+        count: 1440 * 7, // 1週間分
+        text: '7d',
+      },
+      {
+        type: 'minute', // 日単位 (2)
+        count: 1440 * 7 * 2, // 2週間分
+        text: '2w',
+      },
+      {
+        type: 'all', // 全データ(3)
+        count: 1,
+        text: 'All',
+      },
+    ],
+  },
+  yAxis: {
+    plotLines: [
+      {
+        value: 0,
+        width: 2,
+        color: 'white',
+      },
+    ],
+    opposite: false,
+  },
+  legend: {
+    enabled: true,
+  },
+  plotOptions: {
+    series: {
+      compare: 'price',
+      showInNavigator: true,
     },
-    title: {
-        text: 'Bitcoin price of main exchanges'
-    },
-    rangeSelector: {
-        allButtonsEnabled: false,
-        selected: 0,
-        buttons: [{
-            type: 'minute', // 分単位 (0)
-            count: 1440,     // 単位は分
-            text: '1d'       // 一日分
-        }, {
-            type: 'minute',    // 日単位 (1)
-            count: 1440 * 7,   // 1週間分
-            text: '7d'
-        }, {
-            type: 'minute',    // 日単位 (2)
-            count: 1440 * 7 * 2,   // 2週間分
-            text: '2w'
-        }, {
-            type: 'all',    // 全データ(3)
-            count: 1,
-            text: 'All'
-        }]
-    },
-    yAxis: {
-        plotLines: [{
-            value: 0,
-            width: 2,
-            color: 'white',
-        }],
-        opposite: false,
-    },
-    legend: {
-        enabled: true
-    },
-    plotOptions: {
-        series: {
-            compare: 'price',
-            showInNavigator: true
-        },
-    },
-    tooltip: {
-        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y:,1f}</b><br/>',
-        valueDecimals: 0,
-        split: true,
-    },
-    global: {
-        useUTC: false
-    },
-    lang: {
-        thousandsSep: ',',
-        numericSymbols: undefined
-    },
+  },
+  tooltip: {
+    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y:,1f}</b><br/>',
+    valueDecimals: 0,
+    split: true,
+  },
+  global: {
+    useUTC: false,
+  },
+  lang: {
+    thousandsSep: ',',
+    numericSymbols: undefined,
+  },
 }
 
 function useFetchOptions(): Highcharts.Options {
-    const [options, updateOptions] = useState(initialOptions)
+  const [options, updateOptions] = useState(initialOptions)
 
-    useEffect(() => {
-        async function fetchSeries() {
-            try {
-                const res = await axios.get(SPREADSHEET);
-                const data = res.data;
-                const newOptions: Highcharts.Options = {
-                    ...initialOptions,
-                    series: EXCHANGES.map(name => ({
-                        type: 'line',
-                        name,
-                        data: data[name]
-                    }))
-                }
-                updateOptions(newOptions);
-            } catch (e) {
-                throw Error("Something is wrong with the connection to Spreadsheet.")
-            }
+  useEffect(() => {
+    async function fetchSeries() {
+      try {
+        const res = await axios.get(SPREADSHEET)
+        const data = res.data
+        const newOptions: Highcharts.Options = {
+          ...initialOptions,
+          series: EXCHANGES.map(name => ({
+            type: 'line',
+            name,
+            data: data[name],
+          })),
         }
+        updateOptions(newOptions)
+      } catch (e) {
+        throw Error('Something is wrong with the connection to Spreadsheet.')
+      }
+    }
 
-        fetchSeries()
-    }, [])
+    fetchSeries()
+  }, [])
 
-    return options
+  return options
 }
 
 function useTimer() {
-    const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0)
 
-    useEffect(() => {
-        setTimeout(() => setCount(count + 1), 1000)
-    })
+  useEffect(() => {
+    setTimeout(() => setCount(count + 1), 1000)
+  })
 
-    return count
+  return count
 }
 
 const StockChart: React.FC = () => {
-    const options = useFetchOptions()
-    const count = useTimer()
+  const options = useFetchOptions()
+  const count = useTimer()
 
-    if (!options.series) return (
-        <div
-            style={{
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: 48,
-            }}
-        >
-            You are waiting for {count} seconds
-            <br/>
-            Now Loading...
-        </div>
-    )
-
+  if (!options.series)
     return (
-        <HighchartsReact
-            highcharts={Highcharts}
-            constructorType={'stockChart'}
-            options={options}
-        />
+      <div
+        style={{
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: 48,
+        }}
+      >
+        You are waiting for {count} seconds
+        <br />
+        Now Loading...
+      </div>
     )
+
+  return <HighchartsReact highcharts={Highcharts} constructorType={'stockChart'} options={options} />
 }
 
 export default StockChart
