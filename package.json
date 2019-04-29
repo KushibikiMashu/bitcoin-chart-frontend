@@ -23,7 +23,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format"
+      "pre-commit": "pretty-quick --staged"
     }
   },
   "eslintConfig": {
@@ -46,6 +46,7 @@
     "axios": "^0.18.0",
     "husky": "^2.1.0",
     "prettier": "^1.17.0",
+    "pretty-quick": "^1.10.0",
     "react-helmet": "^5.2.0",
     "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.18.0",
