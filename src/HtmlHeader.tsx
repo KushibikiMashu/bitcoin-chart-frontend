@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-const Header: React.FC = () => (
+const HtmlHeader: React.FC = () => (
   <Helmet>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,4 +28,4 @@ const Header: React.FC = () => (
   </Helmet>
 )
 
-export default Header
+export default HtmlHeader

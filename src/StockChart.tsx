@@ -60,7 +60,8 @@ const initialOptions: Highcharts.Options = {
   },
   tooltip: {
     pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y:,1f}</b><br/>',
-    valueDecimals: 0,
+    valueDecimals: 2,
+    valuePrefix: '¥',
     split: true,
   },
   global: {
