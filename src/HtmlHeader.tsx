@@ -14,7 +14,6 @@ const HtmlHeader: React.FC = () => (
     <meta property="og:site_name" content="ビットコインチャート.info" />
     <meta property="og:description" content="ビットコインの価格を取引所ごとに比較しています。" />
     <title>ビットコインチャート.info</title>
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
     {/*Twitter共通設定*/}
     <meta name="twitter:card" content="photo" />
