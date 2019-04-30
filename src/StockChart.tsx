@@ -4,7 +4,7 @@ import HighchartsReact from 'highcharts-react-official'
 import axios from 'axios'
 
 const SPREADSHEET = 'https://script.google.com/macros/s/AKfycbzymYPlML4oiQopSAHEUl7B9Do-W-ECADJ6zKuCYR7g9wkHAJg/exec'
-const EXCHANGES = ['zaif', 'bitflyer', 'coincheck']
+const EXCHANGE_NAMES = ['zaif', 'bitflyer', 'coincheck']
 
 const initialOptions: Highcharts.Options = {
   chart: {
@@ -83,7 +83,7 @@ function useFetchOptions(): Highcharts.Options {
         const data = res.data
         const newOptions: Highcharts.Options = {
           ...initialOptions,
-          series: EXCHANGES.map(name => ({
+          series: EXCHANGE_NAMES.map(name => ({
             type: 'line',
             name,
             data: data[name],
