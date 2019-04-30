@@ -11,7 +11,7 @@ const initialOptions: Highcharts.Options = {
     height: 525,
   },
   title: {
-    text: 'Bitcoin price of main exchanges',
+    text: '国内主要取引所毎のビットコイン金額',
   },
   rangeSelector: {
     allButtonsEnabled: false,
