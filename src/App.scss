@@ -1,0 +1,38 @@
+@import '~bootstrap/scss/bootstrap';
+
+a {
+  color: #0e8c82 !important;
+}
+
+.text-primary {
+  color: #12bbad !important;
+}
+
+a.text-primary:hover,
+a.text-primary:focus {
+  color: #0e8c82 !important;
+}
+
+.bg-primary {
+  background-color: #12bbad !important;
+}
+
+a.bg-primary:hover,
+a.bg-primary:focus,
+button.bg-primary:hover,
+button.bg-primary:focus {
+  background-color: #0e8c82 !important;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.chart {
+  height: 400px;
+  min-width: 310px;
+}
+
+.mt-140px {
+  margin-top: 140px;
+}

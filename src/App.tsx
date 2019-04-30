@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css'
+import './App.scss'
 import HtmlHeader from './HtmlHeader'
 import Navibar from './Navibar'
 import Footer from './Footer'
