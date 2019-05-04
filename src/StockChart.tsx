@@ -2,13 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 import axios from 'axios'
+import localforage from 'localforage'
 import { setupCache } from 'axios-cache-adapter'
 
 const SPREADSHEET = 'https://script.google.com/macros/s/AKfycbzymYPlML4oiQopSAHEUl7B9Do-W-ECADJ6zKuCYR7g9wkHAJg/exec'
 const EXCHANGE_NAMES = ['zaif', 'bitflyer', 'coincheck']
+
+const store = localforage.createInstance({
+  driver: localforage.LOCALSTORAGE,
+  name: 'app',
+  storeName: 'bitcoinchart',
+  version: 1,
+})
+
 const cache = setupCache({
   maxAge: 5 * 60 * 1000,
+  store,
 })
+
 const api = axios.create({
   adapter: cache.adapter,
 })
