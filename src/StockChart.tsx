@@ -2,9 +2,16 @@ import React, { useEffect, useState } from 'react'
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 import axios from 'axios'
+import { setupCache } from 'axios-cache-adapter'
 
 const SPREADSHEET = 'https://script.google.com/macros/s/AKfycbzymYPlML4oiQopSAHEUl7B9Do-W-ECADJ6zKuCYR7g9wkHAJg/exec'
 const EXCHANGE_NAMES = ['zaif', 'bitflyer', 'coincheck']
+const cache = setupCache({
+  maxAge: 5 * 60 * 1000,
+})
+const api = axios.create({
+  adapter: cache.adapter,
+})
 
 const initialOptions: Highcharts.Options = {
   chart: {
@@ -79,7 +86,7 @@ function useFetchOptions(): Highcharts.Options {
   useEffect(() => {
     async function fetchSeries() {
       try {
-        const res = await axios.get(SPREADSHEET)
+        const res = await api({ url: SPREADSHEET, method: 'get' })
         const data = res.data
         const newOptions: Highcharts.Options = {
           ...initialOptions,
