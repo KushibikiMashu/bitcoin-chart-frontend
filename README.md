@@ -16,6 +16,6 @@ $ yarn install
 $ yarn start
 ```
 
-Check `localhost:3000`.
+Check `localhost:3000`
 
 Warning: If you are offline, the chart on top page will not be described because of failure in data fetching and app throws error.
